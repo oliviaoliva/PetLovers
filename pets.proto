@@ -3,7 +3,7 @@ syntax = "proto3";
 package pets;
 
 message Pet {
-    string id = 1; // O MongoDB gera um ObjectId, então usamos string
+    string id = 1;
     string name = 2;
     string breed = 3;
 }

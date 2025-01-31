@@ -7,13 +7,11 @@ import bson
 
 from pymongo import MongoClient
 
-# Conectar ao MongoDB
 client = MongoClient("mongodb://localhost:27017/")
 db = client["petlovers_db"]  
 pets_collection = db["pets"]  
 
 
-# Implementação do serviço PetService
 class PetService(pets_pb2_grpc.PetServiceServicer):
     def ListPets(self, request, context):
         pets = []
@@ -30,7 +28,6 @@ class PetService(pets_pb2_grpc.PetServiceServicer):
         return pets_pb2.Pet(id=str(result.inserted_id), name=request.name, breed=request.breed)
 
 
-# Configuração do servidor gRPC
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pets_pb2_grpc.add_PetServiceServicer_to_server(PetService(), server)

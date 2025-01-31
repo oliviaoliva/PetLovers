@@ -24,19 +24,23 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\npets.proto\x12\x04pets\"\x07\n\x05\x45mpty\".\n\x03Pet\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x62reed\x18\x03 \x01(\t\"#\n\x08PetsList\x12\x17\n\x04pets\x18\x01 \x03(\x0b\x32\t.pets.Pet25\n\nPetService\x12\'\n\x08ListPets\x12\x0b.pets.Empty\x1a\x0e.pets.PetsListb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\npets.proto\x12\x04pets\".\n\x03Pet\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x62reed\x18\x03 \x01(\t\"#\n\x08PetsList\x12\x17\n\x04pets\x18\x01 \x03(\x0b\x32\t.pets.Pet\",\n\rAddPetRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05\x62reed\x18\x02 \x01(\t\"9\n\x0e\x41\x64\x64PetResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x62reed\x18\x03 \x01(\t\"\x07\n\x05\x45mpty2j\n\nPetService\x12\'\n\x08ListPets\x12\x0b.pets.Empty\x1a\x0e.pets.PetsList\x12\x33\n\x06\x41\x64\x64Pet\x12\x13.pets.AddPetRequest\x1a\x14.pets.AddPetResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'pets_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_EMPTY']._serialized_start=20
-  _globals['_EMPTY']._serialized_end=27
-  _globals['_PET']._serialized_start=29
-  _globals['_PET']._serialized_end=75
-  _globals['_PETSLIST']._serialized_start=77
-  _globals['_PETSLIST']._serialized_end=112
-  _globals['_PETSERVICE']._serialized_start=114
-  _globals['_PETSERVICE']._serialized_end=167
+  _globals['_PET']._serialized_start=20
+  _globals['_PET']._serialized_end=66
+  _globals['_PETSLIST']._serialized_start=68
+  _globals['_PETSLIST']._serialized_end=103
+  _globals['_ADDPETREQUEST']._serialized_start=105
+  _globals['_ADDPETREQUEST']._serialized_end=149
+  _globals['_ADDPETRESPONSE']._serialized_start=151
+  _globals['_ADDPETRESPONSE']._serialized_end=208
+  _globals['_EMPTY']._serialized_start=210
+  _globals['_EMPTY']._serialized_end=217
+  _globals['_PETSERVICE']._serialized_start=219
+  _globals['_PETSERVICE']._serialized_end=325
 # @@protoc_insertion_point(module_scope)

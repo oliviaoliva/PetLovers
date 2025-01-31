@@ -39,12 +39,23 @@ class PetServiceStub(object):
                 request_serializer=pets__pb2.Empty.SerializeToString,
                 response_deserializer=pets__pb2.PetsList.FromString,
                 _registered_method=True)
+        self.AddPet = channel.unary_unary(
+                '/pets.PetService/AddPet',
+                request_serializer=pets__pb2.AddPetRequest.SerializeToString,
+                response_deserializer=pets__pb2.AddPetResponse.FromString,
+                _registered_method=True)
 
 
 class PetServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def ListPets(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddPet(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -57,6 +68,11 @@ def add_PetServiceServicer_to_server(servicer, server):
                     servicer.ListPets,
                     request_deserializer=pets__pb2.Empty.FromString,
                     response_serializer=pets__pb2.PetsList.SerializeToString,
+            ),
+            'AddPet': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddPet,
+                    request_deserializer=pets__pb2.AddPetRequest.FromString,
+                    response_serializer=pets__pb2.AddPetResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -86,6 +102,33 @@ class PetService(object):
             '/pets.PetService/ListPets',
             pets__pb2.Empty.SerializeToString,
             pets__pb2.PetsList.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AddPet(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/pets.PetService/AddPet',
+            pets__pb2.AddPetRequest.SerializeToString,
+            pets__pb2.AddPetResponse.FromString,
             options,
             channel_credentials,
             insecure,

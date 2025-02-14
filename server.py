@@ -27,7 +27,8 @@ class PetService(pets_pb2_grpc.PetServiceServicer):
                 breed=pet_doc.get("breed", ""),
                 size=pet_doc.get("size", ""),
                 sex=pet_doc.get("sex", ""),
-                neutered=pet_doc.get("neutered", False)
+                neutered=pet_doc.get("neutered", False),
+                ownerId=pet_doc.get("owner_id", "")
             ))
         return pets_pb2.PetsList(pets=pets)
 
@@ -81,12 +82,24 @@ class PetService(pets_pb2_grpc.PetServiceServicer):
             id=str(pet["_id"]),
             name=pet["name"],
             breed=pet["breed"],
+            ownerId=pet["owner_id"],
             photo=pet.get("photo", ""),
             type=pet.get("type", ""),
             size=pet.get("size", ""),
             sex=pet.get("sex", ""),
             neutered=pet.get("neutered", False)
         )
+    
+    def DeletePet(self, request, context):
+        try:
+            filter_ = {"_id": ObjectId(request.id)}
+            pets_collection.delete_one(filter_)
+            return pets_pb2.Empty()
+        except Exception as e:
+            context.set_code(grpc.StatusCode.INTERNAL)
+            context.set_details(str(e))
+            return pets_pb2.Empty() 
+
 
 def serve():
     """Inicia o servidor gRPC"""

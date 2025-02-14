@@ -44,6 +44,21 @@ class PetServiceStub(object):
                 request_serializer=pets__pb2.AddPetRequest.SerializeToString,
                 response_deserializer=pets__pb2.AddPetResponse.FromString,
                 _registered_method=True)
+        self.UpdatePet = channel.unary_unary(
+                '/pets.PetService/UpdatePet',
+                request_serializer=pets__pb2.UpdatePetRequest.SerializeToString,
+                response_deserializer=pets__pb2.Pet.FromString,
+                _registered_method=True)
+        self.DeletePet = channel.unary_unary(
+                '/pets.PetService/DeletePet',
+                request_serializer=pets__pb2.DeletePetRequest.SerializeToString,
+                response_deserializer=pets__pb2.Empty.FromString,
+                _registered_method=True)
+        self.GetPetById = channel.unary_unary(
+                '/pets.PetService/GetPetById',
+                request_serializer=pets__pb2.PetIdRequest.SerializeToString,
+                response_deserializer=pets__pb2.Pet.FromString,
+                _registered_method=True)
 
 
 class PetServiceServicer(object):
@@ -61,6 +76,24 @@ class PetServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdatePet(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeletePet(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetPetById(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_PetServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -73,6 +106,21 @@ def add_PetServiceServicer_to_server(servicer, server):
                     servicer.AddPet,
                     request_deserializer=pets__pb2.AddPetRequest.FromString,
                     response_serializer=pets__pb2.AddPetResponse.SerializeToString,
+            ),
+            'UpdatePet': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdatePet,
+                    request_deserializer=pets__pb2.UpdatePetRequest.FromString,
+                    response_serializer=pets__pb2.Pet.SerializeToString,
+            ),
+            'DeletePet': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeletePet,
+                    request_deserializer=pets__pb2.DeletePetRequest.FromString,
+                    response_serializer=pets__pb2.Empty.SerializeToString,
+            ),
+            'GetPetById': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPetById,
+                    request_deserializer=pets__pb2.PetIdRequest.FromString,
+                    response_serializer=pets__pb2.Pet.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,6 +177,87 @@ class PetService(object):
             '/pets.PetService/AddPet',
             pets__pb2.AddPetRequest.SerializeToString,
             pets__pb2.AddPetResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdatePet(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/pets.PetService/UpdatePet',
+            pets__pb2.UpdatePetRequest.SerializeToString,
+            pets__pb2.Pet.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeletePet(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/pets.PetService/DeletePet',
+            pets__pb2.DeletePetRequest.SerializeToString,
+            pets__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetPetById(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/pets.PetService/GetPetById',
+            pets__pb2.PetIdRequest.SerializeToString,
+            pets__pb2.Pet.FromString,
             options,
             channel_credentials,
             insecure,

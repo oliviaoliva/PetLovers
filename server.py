@@ -99,6 +99,36 @@ class PetService(pets_pb2_grpc.PetServiceServicer):
             context.set_code(grpc.StatusCode.INTERNAL)
             context.set_details(str(e))
             return pets_pb2.Empty() 
+        
+    def UpdatePet(self, request, context):
+        try:
+            filter_ = {"_id": ObjectId(request.id)}
+            updated_data = {
+                "name": request.name,
+                "breed": request.breed,
+                "photo": request.photo,
+                "type": request.type,
+                "size": request.size,
+                "sex": request.sex,
+                "neutered": request.neutered
+            }
+            pets_collection.update_one(filter_, {"$set": updated_data})
+            return pets_pb2.Pet(
+                id=request.id,
+                name=request.name,
+                breed=request.breed,
+                photo=request.photo,
+                type=request.type,
+                size=request.size,
+                sex=request.sex,
+                neutered=request.neutered,
+                ownerId=""  # ou recupere se necessário
+            )
+        except Exception as e:
+            context.set_code(grpc.StatusCode.INTERNAL)
+            context.set_details(str(e))
+            return pets_pb2.Pet()
+
 
 
 def serve():

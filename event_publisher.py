@@ -12,10 +12,10 @@ class EventPublisher:
             self.channel.exchange_declare(exchange="pet-exchange", exchange_type="topic", durable=True)
 
             self.channel.queue_declare(queue="pet_created", durable=True)
-            self.channel.queue_declare(queue="pet_updated", durable=True)
+            # self.channel.queue_declare(queue="pet_updated", durable=True)
 
             self.channel.queue_bind(exchange="pet-exchange", queue="pet_created", routing_key="pet.created")
-            self.channel.queue_bind(exchange="pet-exchange", queue="pet_updated", routing_key="pet.updated")
+            # self.channel.queue_bind(exchange="pet-exchange", queue="pet_updated", routing_key="pet.updated")
 
             print("✅ Conectado ao RabbitMQ e filas declaradas.")
 

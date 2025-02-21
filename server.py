@@ -122,7 +122,7 @@ class PetService(pets_pb2_grpc.PetServiceServicer):
                 size=request.size,
                 sex=request.sex,
                 neutered=request.neutered,
-                ownerId=""  # ou recupere se necessário
+                ownerId=""
             )
         except Exception as e:
             context.set_code(grpc.StatusCode.INTERNAL)
@@ -137,7 +137,7 @@ def serve():
     pets_pb2_grpc.add_PetServiceServicer_to_server(PetService(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
-    print("🐶 Pet Service gRPC server started on port 50051.")
+    print("🐶 Pet Service gRPC server startou na porta 50051.")
     server.wait_for_termination()
 
 if __name__ == "__main__":
